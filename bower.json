@@ -1,0 +1,27 @@
+{
+  "name": "chat-app",
+  "author": "Stanisław Śledziona",
+  "main": "server.js",
+  "license": "ISC",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "angular-resource": "^1.5.6",
+    "angular-ui-router": "0.3.1"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.js",
+        "dist/css/bootstrap.min.css",
+        "less/bootstrap.less"
+      ]
+    }
+  }
+}

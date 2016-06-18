@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="chatApp">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- bower:js -->
+    <script src="../lib/jquery/dist/jquery.js"></script>
+    <script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../lib/angular/angular.min.js"></script>
+    <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../lib/angular-resource/angular-resource.js"></script>
+    <script src="../lib/socket-io/socket.io.js"></script>
+    <!-- endbower -->
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- endbower -->
+
+    <!-- inject:js -->
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/controllers/ChatController.js"></script>
+    <script src="../scripts/controllers/UserController.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <!-- endinject -->
+  </head>
+  <body>
+  <div class="container">
+    <h1 class="text-center text-info">Chatroom</h1>
+    <div class="panel-group">
+      <div class="panel panel-default" style="margin: 0.5em">
+        <div class="panel-body row" ng-controller="UserController as user">
+          <div class="col-md-3 text-center">
+            <h5 class="text-info">Type your nickname</h5>
+          </div>
+          <div class="col-md-7">
+            <input ng-model="user.username" type="text" class="form-control">
+          </div>
+          <div class="col-md-2 text-center">
+            <button class="btn btn-primary" ng-click="user.createUser(user.username)">Set username</button>
+          </div>
+        </div>
+      </div>
+      <div ng-controller="ChatController as chat">
+        <div class="panel panel-default" style="min-height: 20em; max-height: 20em; overflow-y: scroll; padding: 0em 0.3em 0em 0.3em">
+          <ul style="word-wrap: break-word; list-style: none; padding: 0.3em">
+            <li ng-repeat="message in chat.messages track by $index">
+              <i>{{message.time}}</i> <strong class="text-info">{{message.username}}: </strong> <span>{{message.message}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="text-center" style="margin: 0.5em">
+          <input ng-model="chat.newMessage" ng-keyup="$event.keyCode == 13 && chat.sendMessage()" type="text" class="form-control" style="margin-bottom: 0.3em">
+          <button class="btn btn-primary" ng-click="chat.sendMessage()">Send message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
